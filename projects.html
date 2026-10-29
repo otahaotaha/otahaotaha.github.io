@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects — Omar Taha</title>
+  <meta name="description" content="Terminal_X, an analytics platform with a market-data pipeline and an LLM summary assistant, and an industry study of U.S. automotive retail.">
+  <meta name="theme-color" content="#1b2432">
+  <meta property="og:title" content="Projects — Omar Taha">
+  <meta property="og:description" content="Terminal_X and an industry study of U.S. automotive retail.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231b2432'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='16' fill='%23ffffff'%3EOT%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="./index.html">Omar Taha</a>
+      <nav class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./projects.html" aria-current="page">Projects</a></li>
+          <li><a href="./resume.html">Résumé</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <header class="memo">
+        <h1>Projects</h1>
+        <dl>
+          <dt>Prepared by</dt><dd>Omar Taha</dd>
+          <dt>Subject</dt><dd>Two pieces of work: one built, one in progress</dd>
+          <dt>Date</dt><dd>October 2026</dd>
+        </dl>
+      </header>
+
+      <!-- Lead project: the thing actually built, not studied. -->
+      <article class="project" aria-labelledby="tlx">
+        <span class="lead-tag">Lead project</span>
+        <h2 id="tlx">Terminal_X</h2>
+        <p class="role meta">Analytics platform · <a href="https://tlx.today">tlx.today</a> · June 2026 to present · Built with Wael Taha; I led engineering and product design</p>
+
+        <h3>What I built</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Layer</th><th>What it does</th><th>Why it matters</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Data pipeline</td>
+                <td>Pulls market data from external APIs into a structured PostgreSQL database, normalizing inconsistent formats</td>
+                <td>Validation logic flags bad records at intake, before they reach anyone's screen</td>
+              </tr>
+              <tr>
+                <td>Dashboards and automated reporting</td>
+                <td>Surfaces performance metrics in real time</td>
+                <td>Replaced manual data collection</td>
+              </tr>
+              <tr>
+                <td>AI tooling</td>
+                <td>An LLM-powered assistant that turns structured data into plain-English summaries</td>
+                <td>Tested its output against real data and documented where it was unreliable</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Links</h3>
+        <ul class="links">
+          <li><a href="https://tlx.today">Live site: tlx.today</a></li>
+          <li><span class="meta">[PLACEHOLDER] Code repository link, if you want it public</span></li>
+        </ul>
+      </article>
+
+      <!-- Course project: RESECON 490AI industry study. Links fill in as milestones land. -->
+      <article class="project" aria-labelledby="study">
+        <h2 id="study">U.S. Automotive Retail: New and Used Car Dealers</h2>
+        <p class="role meta">Industry study · RESECON 490AI, AI in Economics, UMass Amherst · Fall 2026 · In progress, final report due December 2026</p>
+
+        <p>A study of U.S. new and used car dealers (NAICS 441110 and 441120): how large the industry is, whether it is growing or contracting, what stage it is in, and where generative AI is showing up in dealerships. Data so far comes from the Bureau of Labor Statistics Quarterly Census of Employment and Wages, 2015 to 2025, with trade, company and academic sources being checked.</p>
+
+        <p class="placeholder">[PLACEHOLDER] 150–250 word project summary, written by Omar, goes here once the report is drafted.</p>
+
+        <h3>Links</h3>
+        <ul class="links">
+          <li><span class="meta">[PLACEHOLDER] Report (PDF)</span></li>
+          <li><span class="meta">[PLACEHOLDER] Slides</span></li>
+          <li><span class="meta">[PLACEHOLDER] Charts</span></li>
+        </ul>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>Omar Taha · <a href="mailto:omar.taha0709@gmail.com">omar.taha0709@gmail.com</a> · <a href="https://www.linkedin.com/in/omartaha117">LinkedIn</a></span>
+      <span>Last updated October 2026</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Omar Taha — Economics student, data and reporting</title>
+  <meta name="description" content="Omar Taha, Managerial Economics student at UMass Amherst with a minor in Informatics. Turns messy data into reporting people actually use. Looking for a co-op or internship in supply chain, operations or data analytics.">
+  <meta name="theme-color" content="#1b2432">
+  <meta property="og:title" content="Omar Taha — Economics student, data and reporting">
+  <meta property="og:description" content="Turns messy data into reporting people actually use.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231b2432'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='16' fill='%23ffffff'%3EOT%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="./index.html">Omar Taha</a>
+      <nav class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="./index.html" aria-current="page">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./resume.html">Résumé</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <div class="home-grid">
+        <section aria-labelledby="claim">
+          <p class="meta">Managerial Economics, minor in Informatics · UMass Amherst · Class of 2027</p>
+          <h1 class="claim" id="claim">Economics student who turns messy data into reporting people actually use.</h1>
+          <p class="lede">Looking for a co-op or internship in supply chain, operations or data analytics, starting 2027.</p>
+
+          <!-- The one live thing: the same small table, raw and cleaned.
+               It shows the claim instead of restating it. CSS only. -->
+          <div class="switch">
+            <fieldset>
+              <legend>Same data, before and after. Pick a view.</legend>
+              <!-- Inputs sit directly in the fieldset so the tables below are
+                   their siblings; the :checked ~ selector in styles.css relies on that. -->
+              <input type="radio" name="view" id="opt-messy" checked>
+              <input type="radio" name="view" id="opt-usable">
+              <div class="switch-options">
+                <label for="opt-messy">Messy</label>
+                <label for="opt-usable">Usable</label>
+              </div>
+
+              <div class="table-messy table-wrap">
+                <table>
+                  <caption>Demo rows, not real figures: a weekly revenue export as it arrives.</caption>
+                  <thead>
+                    <tr><th>week</th><th>Service line</th><th>rev</th><th>notes</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>3/2/26</td><td>Air freight</td><td>18,400</td><td></td></tr>
+                    <tr><td>2026-03-02</td><td>ocean freight</td><td><span class="flag">N/A</span></td><td>pending</td></tr>
+                    <tr><td>Mar 2 2026</td><td>Customs </td><td>7250.00</td><td></td></tr>
+                    <tr><td>3/2/26</td><td>Air freight</td><td>18,400</td><td><span class="flag">duplicate</span></td></tr>
+                    <tr><td>3/9/26</td><td>Air Freight</td><td>19,100</td><td></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="table-usable table-wrap">
+                <table>
+                  <caption>Demo rows, not real figures: the same export after validation at intake.</caption>
+                  <thead>
+                    <tr><th>Week of</th><th>Service line</th><th class="num">Revenue (USD)</th><th>Check</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>2026-03-02</td><td>Air freight</td><td class="num">18,400</td><td>ok</td></tr>
+                    <tr><td>2026-03-02</td><td>Ocean freight</td><td class="num">—</td><td>missing, flagged to owner</td></tr>
+                    <tr><td>2026-03-02</td><td>Customs</td><td class="num">7,250</td><td>ok</td></tr>
+                    <tr><td>2026-03-09</td><td>Air freight</td><td class="num">19,100</td><td>ok</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </fieldset>
+            <p class="note meta">Dates normalized, names matched, the duplicate dropped, the gap flagged instead of hidden. That is the job, in small.</p>
+          </div>
+        </section>
+
+        <figure class="photo">
+          <span class="initials" aria-hidden="true">OT</span>
+          <figcaption>[PLACEHOLDER] Photo. Add <code>site/photo.jpg</code> and this block becomes the picture.</figcaption>
+        </figure>
+      </div>
+
+      <section aria-labelledby="proof">
+        <h2 id="proof">Where this has already worked</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>What I built</th><th>Where</th><th>What happened</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Weekly Excel reporting on a $22.6M revenue portfolio across nine service lines</td>
+                <td>FreePL, finance intern, summer 2024</td>
+                <td>Leadership got consistent visibility into which lines carried margin and which did not</td>
+              </tr>
+              <tr>
+                <td>Ingestion layer pulling market data from external APIs into PostgreSQL, with validation that flags bad records at intake</td>
+                <td><a href="./projects.html">Terminal_X</a>, 2026 to present</td>
+                <td>Inconsistent formats normalized before they reach a dashboard</td>
+              </tr>
+              <tr>
+                <td>An LLM assistant that turns structured data into plain-English summaries</td>
+                <td>Terminal_X</td>
+                <td>Tested its output against real data and documented where it was unreliable</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><a href="./projects.html">See the projects</a> or <a href="./contact.html">get in touch</a>.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>Omar Taha · <a href="mailto:omar.taha0709@gmail.com">omar.taha0709@gmail.com</a> · <a href="https://www.linkedin.com/in/omartaha117">LinkedIn</a></span>
+      <span>Last updated October 2026</span>
+    </div>
+  </footer>
+</body>
+</html>

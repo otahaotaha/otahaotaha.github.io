@@ -1,0 +1,330 @@
+/* ------------------------------------------------------------------
+   Omar Taha — personal site
+   Design device: every page reads like a well-organized report memo.
+   Tokens first, then base, layout, components. No JavaScript.
+   ------------------------------------------------------------------ */
+
+:root {
+  /* Palette: charcoal-navy ink on white, one muted teal accent.
+     "signal" is used only to mark problems in the messy demo table. */
+  --ground: #ffffff;
+  --ink: #1b2432;
+  --accent: #2a7f79;
+  --accent-ink: #1f5f5a;   /* darker teal for text on white (contrast 4.5:1+) */
+  --surface: #f3f5f7;
+  --muted: #5b6673;
+  --signal: #b4532a;
+  --rule: #c9d0d8;
+
+  /* Type: a serif for headings (report titles), a sans for text and tables.
+     Five sizes, clearly apart. */
+  --font-head: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-text: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --s1: 0.875rem;  /* 14px: captions, memo meta */
+  --s2: 1.0625rem; /* 17px: body */
+  --s3: 1.375rem;  /* 22px: section headings */
+  --s4: 2rem;      /* 32px: page titles */
+  --s5: 3rem;      /* 48px: the Home claim on desktop */
+
+  --measure: 64ch; /* line length for running text */
+  --gutter: 1.25rem;
+  --maxw: 68rem;
+}
+
+/* Browser surfaces take the palette too, so nothing looks default. */
+::selection { background: var(--accent); color: var(--ground); }
+html { caret-color: var(--accent); scrollbar-color: var(--muted) var(--surface); }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--s2);
+  line-height: 1.55;
+  font-feature-settings: "tnum" 1; /* numbers line up in tables everywhere */
+}
+
+/* Square corners on purpose: this is a document, not an app. */
+button, input, .memo, .photo, table { border-radius: 0; }
+
+a {
+  color: var(--accent-ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover { color: var(--ink); }
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.005em;
+}
+h1 { font-size: var(--s4); }
+h2 { font-size: var(--s3); margin-top: 2.5rem; }
+h3 { font-size: var(--s2); font-family: var(--font-text); font-weight: 700; margin-top: 1.5rem; }
+p, ul, ol, dl { max-width: var(--measure); }
+p { margin: 0 0 1em; }
+ul, ol { padding-left: 1.2em; margin: 0 0 1em; }
+li { margin-bottom: 0.35em; }
+small, .meta { font-size: var(--s1); color: var(--muted); }
+
+/* ---------- Layout ---------- */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+main { padding: 2rem 0 4rem; }
+
+/* ---------- Header and navigation ---------- */
+.site-head {
+  border-bottom: 2px solid var(--ink);
+}
+.site-head .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.brand {
+  font-family: var(--font-head);
+  font-size: var(--s3);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.25rem;
+  max-width: none;
+}
+.site-nav a {
+  display: inline-block;
+  padding: 0.6rem 0.65rem; /* keeps the touch target at 44px tall */
+  text-decoration: none;
+  color: var(--muted);
+}
+.site-nav a:hover { color: var(--ink); }
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* ---------- Memo header: the report device ---------- */
+.memo {
+  background: var(--surface);
+  padding: 1.25rem var(--gutter);
+  margin: 0 0 2rem;
+}
+.memo h1 { margin-bottom: 0.75rem; }
+.memo dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.2rem 1rem;
+  margin: 0;
+  font-size: var(--s1);
+  max-width: none;
+}
+.memo dt { color: var(--muted); }
+.memo dd { margin: 0; }
+
+/* ---------- Home ---------- */
+.claim {
+  font-family: var(--font-head);
+  font-size: var(--s4);
+  font-weight: 600;
+  line-height: 1.15;
+  max-width: 22ch;
+  margin: 0 0 1rem;
+}
+.lede { font-size: var(--s2); max-width: 52ch; color: var(--muted); }
+
+.home-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+/* Grid items default to min-width:auto, which lets a wide table push the
+   column past the viewport on phones. This keeps tables scrolling inside. */
+.home-grid > * { min-width: 0; }
+@media (max-width: 767px) {
+  .switch table { font-size: var(--s1); }
+}
+
+/* Photo: real photo if present, otherwise a clearly marked block. */
+.photo {
+  width: 100%;
+  max-width: 18rem;
+  aspect-ratio: 4 / 5;
+  background: var(--ink);
+  color: var(--ground);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 0;
+}
+.photo .initials {
+  font-family: var(--font-head);
+  font-size: var(--s5);
+  line-height: 1;
+}
+.photo figcaption { font-size: var(--s1); color: #c9d0d8; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---------- The one live thing: Messy → Usable switch (CSS only) ---------- */
+.switch { margin: 1.5rem 0 0; }
+.switch fieldset { border: 0; padding: 0; margin: 0 0 0.75rem; }
+.switch legend {
+  font-size: var(--s1);
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.switch-options { display: inline-flex; border: 2px solid var(--ink); }
+/* The radios are visually hidden but stay focusable for keyboard users. */
+.switch input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.switch-options label {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--ground);
+}
+#opt-messy:checked ~ .switch-options label[for="opt-messy"],
+#opt-usable:checked ~ .switch-options label[for="opt-usable"] {
+  background: var(--ink);
+  color: var(--ground);
+}
+#opt-messy:focus-visible ~ .switch-options label[for="opt-messy"],
+#opt-usable:focus-visible ~ .switch-options label[for="opt-usable"] {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Show one table at a time, driven by which radio is checked. */
+.table-messy, .table-usable { display: none; }
+#opt-messy:checked ~ .table-messy,
+#opt-usable:checked ~ .table-usable { display: block; }
+.switch .note { margin-top: 0.5rem; }
+.switch td:first-child { white-space: nowrap; } /* a date never breaks mid-value */
+.flag { color: var(--signal); font-weight: 600; }
+
+/* ---------- Tables (evidence, not decoration) ---------- */
+.table-wrap { overflow-x: auto; }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 0 1.5rem;
+  font-size: var(--s2);
+}
+caption {
+  text-align: left;
+  font-size: var(--s1);
+  color: var(--muted);
+  padding: 0 0 0.5rem;
+  caption-side: top;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem 0.75rem 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+thead th {
+  border-bottom: 2px solid var(--ink);
+  font-weight: 700;
+  font-size: var(--s1);
+  letter-spacing: 0;
+}
+td.num, th.num { text-align: right; }
+tbody tr:last-child td { border-bottom: 2px solid var(--ink); }
+
+/* ---------- Projects ---------- */
+.project {
+  padding: 1.5rem 0;
+  border-top: 2px solid var(--ink);
+}
+.project:last-of-type { border-bottom: 2px solid var(--ink); }
+.project h2 { margin-top: 0; }
+.project .role { margin-bottom: 1rem; }
+.links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.links li { margin: 0; }
+.lead-tag {
+  display: inline-block;
+  font-size: var(--s1);
+  color: var(--ground);
+  background: var(--accent);
+  padding: 0.15rem 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Placeholder marks: easy to find, honest on screen ---------- */
+.placeholder {
+  background: var(--surface);
+  border-left: 0;
+  padding: 0.75rem 1rem;
+  color: var(--muted);
+}
+
+/* ---------- Contact ---------- */
+.contact-list { list-style: none; padding: 0; }
+.contact-list li { margin-bottom: 0.75rem; }
+.contact-list a { font-size: var(--s3); font-family: var(--font-head); }
+
+/* ---------- Footer ---------- */
+.site-foot {
+  border-top: 2px solid var(--ink);
+  padding: 1.25rem 0 2rem;
+  font-size: var(--s1);
+  color: var(--muted);
+}
+.site-foot .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 768px) {
+  :root { --gutter: 2rem; }
+  .home-grid { grid-template-columns: minmax(0, 1fr) 18rem; gap: 3rem; }
+  .claim { font-size: var(--s5); }
+  .memo { padding: 1.5rem 2rem; }
+}
+
+/* No animation anywhere; this still covers any hover/transition a browser adds. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+@media print {
+  .site-nav, .switch-options, .site-foot { display: none; }
+  body { font-size: 11pt; }
+}
